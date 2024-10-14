@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Visit - SmileCare Dentistry</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo_of_the_page.png" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="plan-visit-page" class="visit-section">
+            <h2 class="visit-title">Plan Your Visit</h2>
+            <form class="visit-form" action="/submit-appointment" method="POST">
+                <label class="visit-label" for="name">Full Name:</label>
+                <input class="visit-input" type="text" id="name" name="name" required>
+                
+                <label class="visit-label" for="email">Email:</label>
+                <input class="visit-input" type="email" id="email" name="email" required>
+                
+                <label class="visit-label" for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label class="visit-label" for="date">Preferred Date:</label>
+                <input class="visit-input" type="date" id="date" name="date" required>
+                
+                <label class="visit-label" for="time">Preferred Time:</label>
+                <input class="visit-input" type="time" id="time" name="time" required>
+                
+                <label class="visit-label" for="service">Service:</label>
+                <select class="visit-input" id="service" name="service" required>
+                    <option value="general">General Dentistry</option>
+                    <option value="cosmetic">Cosmetic Dentistry</option>
+                    <option value="orthodontics">Orthodontics</option>
+                </select>
+                
+                <button type="submit" class="btn visit-btn">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Address: 123 Smile St, Kyiv, Ukraine</p>
+            <p>Phone: +380 12 345 6789</p>
+            <p>Email: contact@smilecare.ua</p>
+        </section>
+        <p>&copy; 2024 SmileCare Dentistry. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+    <script>
+        const input = document.querySelector("#phone");
+        const iti = intlTelInput(input, {
+            initialCountry: "auto",
+            geoIpLookup: function(callback) {
+                fetch('https://ipinfo.io/json', {cache: 'reload'})
+                .then(response => response.json())
+                .then(data => callback(data.country))
+                .catch(() => callback('US'));
+            },
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.js"
+        });
+    </script>
+</body>
+</html>
